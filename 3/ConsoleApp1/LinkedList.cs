@@ -22,7 +22,27 @@ namespace ConsoleApp1
             this.MinNode = null;
         }
         public void Append(int n) {
-            //
+            
+            if (this.Tail != null) {
+                Node NewTail = new Node(n);
+                this.Tail.Next = NewTail;
+
+                /**/
+                this.Tail = NewTail;
+                if (this.MaxNode == null || n > this.MaxNode.Value)
+                {
+                    this.MaxNode = NewTail;
+                }
+                if (this.MinNode == null || n < this.MinNode.Value)
+                {
+                    this.MinNode = NewTail;
+                }
+            }
+            else
+            {
+                this.Prepend(n);
+            }
+
         }
 
         public void Prepend(int n)//
@@ -45,14 +65,22 @@ namespace ConsoleApp1
 
 
         }
-        /*
-        public int Pop()
+        
+        /*public int Pop()
         {
+            if (this.Head == null)
+            {
+                throw new InvalidOperationException("Pop from empty list");
+            }
             //
         }
-
+        
         public int Unqueue()
         {
+            if (this.Head == null)
+            {
+                throw new InvalidOperationException("Unqueue from empty list");
+            }
             //
         }*/
 
