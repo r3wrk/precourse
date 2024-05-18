@@ -1,6 +1,7 @@
 ﻿
 
 using ConsoleApp1;
+using System.Runtime.CompilerServices;
 
 internal class Program
 {
@@ -19,8 +20,25 @@ internal class Program
         list.Prepend(2);
         list.Prepend(500);
         list.Prepend(2);
-        Console.WriteLine(list.ToString());
+        Console.WriteLine(list);
+        Console.WriteLine(list.GetMinNode().Value + " " + list.GetMaxNode().Value);
         list.Sort();
-        Console.WriteLine(list.ToString());
+        Console.WriteLine(list);
+        Console.WriteLine(list.GetMinNode().Value + " " + list.GetMaxNode().Value);
+        list.Pop();
+        Console.WriteLine(list);
+        Console.WriteLine(list.GetMinNode().Value + " " + list.GetMaxNode().Value);
+        list.Unqueue();
+        Console.WriteLine(list);
+        Console.WriteLine(list.GetMinNode().Value+" "+list.GetMaxNode().Value);
+        list.Unqueue();
+        Console.WriteLine(list);
+        Console.WriteLine(list.GetMinNode().Value + " " + list.GetMaxNode().Value);
+        list.Prepend(700);
+        Console.WriteLine(list);
+        Console.WriteLine(list.GetMinNode().Value + " " + list.GetMaxNode().Value);
+        list.Append(0);
+        Console.WriteLine(list);
+        Console.WriteLine(list.GetMinNode().Value + " " + list.GetMaxNode().Value);
     }
 }

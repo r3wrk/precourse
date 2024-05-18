@@ -65,13 +65,53 @@ namespace ConsoleApp1
 
 
         }
-        
-        /*public int Pop()
+        private void UpdateMinMax()
         {
-            if (this.Head == null)
+            this.MaxNode = null;
+            this.MinNode = null;
+            foreach (Node node in this.ToNodeList())
+            {
+                if (this.MaxNode == null || node.Value > this.MaxNode.Value)
+                {
+                    this.MaxNode = node;
+                }
+                if (this.MinNode == null || node.Value < this.MinNode.Value)
+                {
+                    this.MinNode = node;
+                }
+            }
+        }
+        public int Pop()
+        {
+            if (this.Tail == null)
             {
                 throw new InvalidOperationException("Pop from empty list");
             }
+
+            Node OldTail = this.Tail;
+
+            
+            if (this.Head == this.Tail)
+            {
+                this.Unqueue();
+
+            }
+            else
+            {
+                Node? NewTail = this.Head;
+                while (NewTail?.Next?.Next != null) {
+                    NewTail = NewTail.Next;
+                }
+                NewTail.Next = null;
+                this.Tail = NewTail;
+
+                if (OldTail.Value == this.MaxNode?.Value || OldTail.Value == this.MinNode?.Value)
+                {
+                    this.UpdateMinMax();
+                }
+            }
+
+            return OldTail.Value;
             //
         }
         
@@ -81,8 +121,27 @@ namespace ConsoleApp1
             {
                 throw new InvalidOperationException("Unqueue from empty list");
             }
+
+            Node OldHead = this.Head;
+            if (this.Head.Next == null)
+            {
+                /**/
+                this.Head = null;
+                this.Tail = null;
+                this.MaxNode = null;
+                this.MinNode = null;
+
+            }
+            else {
+                this.Head = OldHead.Next;
+                if (OldHead.Value == this.MaxNode?.Value || OldHead.Value == this.MinNode?.Value) {
+                    this.UpdateMinMax();
+                }
+            }
+
+            return OldHead.Value;
             //
-        }*/
+        }
 
         public IEnumerable<int> ToList() {
             Node? curr = this.Head;
