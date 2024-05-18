@@ -1,33 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConsoleApp1
+﻿namespace ConsoleApp1
 {
     internal class LinkedList
     {
+        // All methods modifying the list must preserve the accuracy of these values
         private Node? Head;
-
         private Node? Tail;
         private Node? MaxNode;
         private Node? MinNode;
 
-        public LinkedList() {
+        public LinkedList()
+        {
             this.Head = null;
             this.Tail = null;
             this.MaxNode = null;
             this.MinNode = null;
         }
-        public void Append(int n) {
-            
-            if (this.Tail != null) {
+        public void Append(int n)
+        {
+
+            if (this.Tail != null)
+            {
                 Node NewTail = new Node(n);
                 this.Tail.Next = NewTail;
 
-                /**/
+
                 this.Tail = NewTail;
                 if (this.MaxNode == null || n > this.MaxNode.Value)
                 {
@@ -45,16 +41,18 @@ namespace ConsoleApp1
 
         }
 
-        public void Prepend(int n)//
+        public void Prepend(int n)
         {
             Node NewHead = new Node(n);
-            NewHead.Next = Head;
-            /**/
-            if (this.Tail == null) { 
+            NewHead.Next = this.Head;
+
+            if (this.Tail == null)
+            {
                 this.Tail = NewHead;
             }
             this.Head = NewHead;
-            if (this.MaxNode == null || n > this.MaxNode.Value) { 
+            if (this.MaxNode == null || n > this.MaxNode.Value)
+            {
                 this.MaxNode = NewHead;
             }
             if (this.MinNode == null || n < this.MinNode.Value)
@@ -90,7 +88,7 @@ namespace ConsoleApp1
 
             Node OldTail = this.Tail;
 
-            
+
             if (this.Head == this.Tail)
             {
                 this.Unqueue();
@@ -99,7 +97,8 @@ namespace ConsoleApp1
             else
             {
                 Node? NewTail = this.Head;
-                while (NewTail?.Next?.Next != null) {
+                while (NewTail?.Next?.Next != null)
+                {
                     NewTail = NewTail.Next;
                 }
                 NewTail.Next = null;
@@ -112,9 +111,9 @@ namespace ConsoleApp1
             }
 
             return OldTail.Value;
-            //
+
         }
-        
+
         public int Unqueue()
         {
             if (this.Head == null)
@@ -125,25 +124,28 @@ namespace ConsoleApp1
             Node OldHead = this.Head;
             if (this.Head.Next == null)
             {
-                /**/
+
                 this.Head = null;
                 this.Tail = null;
                 this.MaxNode = null;
                 this.MinNode = null;
 
             }
-            else {
+            else
+            {
                 this.Head = OldHead.Next;
-                if (OldHead.Value == this.MaxNode?.Value || OldHead.Value == this.MinNode?.Value) {
+                if (OldHead.Value == this.MaxNode?.Value || OldHead.Value == this.MinNode?.Value)
+                {
                     this.UpdateMinMax();
                 }
             }
 
             return OldHead.Value;
-            //
+
         }
 
-        public IEnumerable<int> ToList() {
+        public IEnumerable<int> ToList()
+        {
             Node? curr = this.Head;
             while (curr != null)
             {
@@ -151,17 +153,19 @@ namespace ConsoleApp1
                 curr = curr.Next;
             }
         }
-        
+
 
         public bool IsCircular()
         {
             Node? fast = this.Head;
             Node? slow = this.Head;
-            while (slow?.Next != null && fast?.Next?.Next != null) {
+            while (slow?.Next != null && fast?.Next?.Next != null)
+            {
                 slow = slow.Next;
                 fast = fast.Next.Next;
 
-                if (slow == this.Head) {
+                if (slow == this.Head)
+                {
                     return true;
                 }
                 if (slow == fast)
@@ -170,9 +174,10 @@ namespace ConsoleApp1
                 }
             }
             return false;
-            
+
         }
-        private IEnumerable<Node> ToNodeList() {
+        private IEnumerable<Node> ToNodeList()
+        {
             Node? curr = this.Head;
             while (curr != null)
             {
@@ -180,7 +185,7 @@ namespace ConsoleApp1
                 curr = curr.Next;
             }
         }
-        public void Sort()//
+        public void Sort()
         {
             if (this.Head != null)
             {
@@ -193,15 +198,15 @@ namespace ConsoleApp1
                 nodes[nodes.Length - 1].Next = null;
                 this.Head = nodes[0];
 
-                /**/
+
                 this.Tail = nodes[nodes.Length - 1];
                 this.MaxNode = this.Tail;
                 this.MinNode = this.Head;
             }
 
-            
+
         }
-        
+
         public Node? GetMaxNode()
         {
             return this.MaxNode;
@@ -218,4 +223,3 @@ namespace ConsoleApp1
         }
     }
 }
-        

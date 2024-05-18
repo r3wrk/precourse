@@ -1,17 +1,17 @@
 ﻿
 
 using ConsoleApp1;
-using System.Runtime.CompilerServices;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
-        for (long i = 999456789910; i < 999456789910+10; i++)
+        for (long i = 999456789910; i < 999456789910 + 10; i++)
         {
-            Console.WriteLine(i+" "+( new NumericalExpression(i)));
-            //Console.WriteLine("Hello, World!" + (i*123456).ToString());
+            Console.WriteLine(i + " " + (new NumericalExpression(i)));
+
         }
+        Console.WriteLine(NumericalExpression.SumLetters(1000) == 18455);
 
         LinkedList list = new LinkedList();
         list.Prepend(3);
@@ -30,15 +30,17 @@ internal class Program
         Console.WriteLine(list.GetMinNode().Value + " " + list.GetMaxNode().Value);
         list.Unqueue();
         Console.WriteLine(list);
-        Console.WriteLine(list.GetMinNode().Value+" "+list.GetMaxNode().Value);
+        Console.WriteLine(list.GetMinNode().Value + " " + list.GetMaxNode().Value);
         list.Unqueue();
         Console.WriteLine(list);
         Console.WriteLine(list.GetMinNode().Value + " " + list.GetMaxNode().Value);
         list.Prepend(700);
         Console.WriteLine(list);
         Console.WriteLine(list.GetMinNode().Value + " " + list.GetMaxNode().Value);
-        list.Append(0);
+        list.Append(-1);
+        list.Append(7);
         Console.WriteLine(list);
         Console.WriteLine(list.GetMinNode().Value + " " + list.GetMaxNode().Value);
+
     }
 }
